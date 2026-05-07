@@ -30,11 +30,7 @@
       color: var(--dark);
     }
 
-    .dashboard {
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 24px;
-    }
+    .dashboard { max-width: 1480px; margin: 0 auto; padding: 24px; }
 
     .header {
       background: linear-gradient(135deg, #1cabe2, #087ca7);
@@ -45,54 +41,31 @@
       margin-bottom: 24px;
     }
 
-    .header h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
-      letter-spacing: -0.5px;
-    }
-
-    .header p {
-      margin: 0;
-      opacity: 0.95;
-      font-size: 15px;
-      line-height: 1.5;
-    }
+    .header h1 { margin: 0 0 8px; font-size: 30px; letter-spacing: -0.5px; }
+    .header p { margin: 0; opacity: 0.95; font-size: 15px; line-height: 1.5; }
 
     .top-row {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(8, minmax(145px, 1fr));
       gap: 16px;
       margin-bottom: 20px;
     }
 
     .summary-card {
       background: var(--card);
-      padding: 18px;
+      padding: 16px;
       border-radius: 16px;
       border: 1px solid var(--border);
       box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
     }
 
-    .summary-card .label {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .summary-card .value {
-      font-size: 30px;
-      font-weight: 700;
-    }
-
-    .summary-card .hint {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 6px;
-    }
+    .summary-card .label { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+    .summary-card .value { font-size: 24px; font-weight: 700; letter-spacing: -0.3px; }
+    .summary-card .hint { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.35; }
 
     .content-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 1.35fr 1fr 1fr;
       gap: 20px;
       margin-bottom: 20px;
     }
@@ -105,20 +78,16 @@
       box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
     }
 
-    .panel h2 {
-      margin: 0 0 14px;
-      font-size: 18px;
-    }
+    .panel h2 { margin: 0 0 14px; font-size: 18px; }
 
     .filters {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 12px;
       margin-bottom: 20px;
     }
 
-    select,
-    input {
+    select, input {
       width: 100%;
       padding: 11px 12px;
       border: 1px solid var(--border);
@@ -128,10 +97,7 @@
       color: var(--dark);
     }
 
-    .initiative-list {
-      display: grid;
-      gap: 16px;
-    }
+    .initiative-list { display: grid; gap: 16px; }
 
     .initiative-card {
       background: white;
@@ -149,18 +115,8 @@
       margin-bottom: 12px;
     }
 
-    .initiative-title {
-      margin: 0;
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .initiative-meta {
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 6px;
-      line-height: 1.45;
-    }
+    .initiative-title { margin: 0; font-size: 18px; font-weight: 700; }
+    .initiative-meta { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.45; }
 
     .badge {
       display: inline-flex;
@@ -179,6 +135,27 @@
     .badge.delayed { background: #fee2e2; color: #991b1b; }
     .badge.not-started { background: #f3f4f6; color: #374151; }
     .badge.on-track { background: #dbeafe; color: #1e40af; }
+    .badge.design { background: #ede9fe; color: #5b21b6; }
+    .badge.ideate { background: #e0f2fe; color: #075985; }
+    .badge.pilot { background: #ecfccb; color: #3f6212; }
+    .badge.scale-sustain { background: #ccfbf1; color: #115e59; }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(130px, 1fr));
+      gap: 10px;
+      margin: 14px 0 12px;
+    }
+
+    .metric {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+
+    .metric .metric-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .metric .metric-value { font-size: 15px; font-weight: 700; }
 
     .progress-wrap {
       display: grid;
@@ -188,23 +165,9 @@
       margin: 12px 0 18px;
     }
 
-    .progress-bar {
-      height: 10px;
-      background: #edf2f7;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: var(--primary);
-      border-radius: 999px;
-    }
-
-    .progress-value {
-      font-size: 13px;
-      font-weight: 700;
-    }
+    .progress-bar { height: 10px; background: #edf2f7; border-radius: 999px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--primary); border-radius: 999px; }
+    .progress-value { font-size: 13px; font-weight: 700; }
 
     .timeline {
       display: grid;
@@ -219,7 +182,7 @@
       border-radius: 14px;
       border: 1px solid var(--border);
       background: #f9fafb;
-      min-height: 112px;
+      min-height: 130px;
     }
 
     .milestone::before {
@@ -237,70 +200,22 @@
     .milestone.at-risk::before { background: var(--risk); }
     .milestone.delayed::before { background: var(--delayed); }
 
-    .milestone-name {
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.35;
-      margin-bottom: 7px;
-    }
-
-    .milestone-date,
-    .milestone-owner {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.4;
-    }
+    .milestone-name { font-size: 13px; font-weight: 700; line-height: 1.35; margin-bottom: 7px; }
+    .milestone-date, .milestone-owner, .milestone-progress { font-size: 12px; color: var(--muted); line-height: 1.4; }
 
     .table-wrap { overflow-x: auto; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-
-    th {
-      text-align: left;
-      background: #f3f6fa;
-      padding: 12px;
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
-    }
-
-    td {
-      padding: 12px;
-      border-bottom: 1px solid var(--border);
-      vertical-align: top;
-    }
-
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { text-align: left; background: #f3f6fa; padding: 12px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
     tr:hover td { background: #fbfdff; }
 
     .priority-high { color: #dc2626; font-weight: 700; }
     .priority-medium { color: #d97706; font-weight: 700; }
     .priority-low { color: #2563eb; font-weight: 700; }
 
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .legend span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
+    .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; font-size: 12px; color: var(--muted); }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
     .dot.completed { background: var(--completed); }
     .dot.in-progress { background: var(--progress); }
     .dot.at-risk { background: var(--risk); }
@@ -316,16 +231,15 @@
       background: #fbfdff;
     }
 
-    @media (max-width: 1100px) {
-      .top-row { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 1300px) {
+      .top-row { grid-template-columns: repeat(4, 1fr); }
       .content-grid { grid-template-columns: 1fr; }
-      .filters { grid-template-columns: repeat(2, 1fr); }
+      .filters { grid-template-columns: repeat(3, 1fr); }
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 800px) {
       .dashboard { padding: 14px; }
-      .top-row,
-      .filters { grid-template-columns: 1fr; }
+      .top-row, .filters, .metric-grid { grid-template-columns: 1fr; }
       .initiative-header { flex-direction: column; }
       .timeline { grid-template-columns: 1fr; }
     }
@@ -335,7 +249,7 @@
   <main class="dashboard">
     <section class="header">
       <h1>Innovation & Digital Transformation Work Plan Dashboard</h1>
-      <p>Milestone tracking across initiatives, sections, owners, implementation status, and management actions.</p>
+      <p>Milestone tracking across initiatives, budget, reach, stage/phase, ownership, and management actions.</p>
     </section>
 
     <section class="top-row" id="summaryCards"></section>
@@ -344,6 +258,10 @@
       <div class="panel">
         <h2>Portfolio Completion by Section</h2>
         <canvas id="sectionChart" height="120"></canvas>
+      </div>
+      <div class="panel">
+        <h2>Budget by Section</h2>
+        <canvas id="budgetChart" height="140"></canvas>
       </div>
       <div class="panel">
         <h2>Milestone Status Distribution</h2>
@@ -361,15 +279,11 @@
     <section class="panel">
       <h2>Initiative Milestone Tracker</h2>
       <div class="filters">
-        <select id="sectionFilter">
-          <option value="All">All Sections</option>
-        </select>
-        <select id="statusFilter">
-          <option value="All">All Statuses</option>
-        </select>
-        <select id="priorityFilter">
-          <option value="All">All Priorities</option>
-        </select>
+        <select id="sectionFilter"><option value="All">All Sections</option></select>
+        <select id="statusFilter"><option value="All">All Statuses</option></select>
+        <select id="priorityFilter"><option value="All">All Priorities</option></select>
+        <select id="stageFilter"><option value="All">All Stages</option></select>
+        <select id="phaseFilter"><option value="All">All Phases</option></select>
         <input type="text" id="searchInput" placeholder="Search initiative, milestone, owner..." />
       </div>
       <div id="initiativeList" class="initiative-list"></div>
@@ -383,9 +297,16 @@
             <tr>
               <th>Initiative</th>
               <th>Section</th>
+              <th>Stage</th>
+              <th>Phase</th>
+              <th>Budget</th>
+              <th>Budget Used</th>
+              <th>Target Reach</th>
+              <th>Actual Reach</th>
               <th>Milestone</th>
               <th>Due Date</th>
               <th>Status</th>
+              <th>Progress</th>
               <th>Owner</th>
               <th>Priority</th>
               <th>Management Action</th>
@@ -398,7 +319,7 @@
   </main>
 
   <script>
-    const initiatives = [{"initiative": "CPSS Benchmarking and Refugee Inclusion Tool", "section": "Child Protection", "owner": "Harrriet, Addis", "priority": "High", "overallStatus": "In Progress", "progress": 40, "action": "No management action recorded.", "milestones": [{"name": "Revision and pre-testing of the CPSS data collection tool completed", "dueDate": "2026-05-30", "status": "In Progress", "owner": "Bayo and Fekadu"}, {"name": "Revision and pre-testing of the RIT data collection tool completed", "dueDate": "2026-05-30", "status": "In Progress", "owner": "Bayo and Fekadu"}, {"name": "Training of MoWSA, UNHCR, and RRS staff on data entry and submission completed", "dueDate": "2026-06-30", "status": "Not Started", "owner": "Bayo and Fekadu"}, {"name": "Development and deployment of the CPSS data pipeline and dashboard completed", "dueDate": "2026-06-30", "status": "In Progress", "owner": "Bayo and Fekadu"}, {"name": "Development and deployment of the RIT data pipeline and dashboard completed", "dueDate": "2026-06-30", "status": "Not Started", "owner": "Bayo and Fekadu"}, {"name": "Ongoing maintenance and technical support for CPSS and RIT data pipelines and dashboards provided", "dueDate": "2026-12-30", "status": "Not Started", "owner": "Bayo and Fekadu"}]}, {"initiative": "International Adoption System Digitization (FTR)", "section": "Child Protection", "owner": "Harriet", "priority": "High", "overallStatus": "At Risk", "progress": 25, "action": "No management action recorded.", "milestones": [{"name": "Scanners with OCR capability procured, installed, tested, and ready for operational use in document digitization.", "dueDate": "2026-06-30", "status": "At Risk", "owner": "Bayo and Fekadu"}, {"name": "A total of 100,000 international adoption paper records digitized, OCR-processed, and stored in searchable digital format.", "dueDate": "2026-12-30", "status": "At Risk", "owner": "Bayo and Fekadu"}]}, {"initiative": "CPIMS+/PRIMERO", "section": "Child Protection", "owner": "Harriet, Wossen", "priority": "Medium", "overallStatus": "In Progress", "progress": 10, "action": "No management action recorded.", "milestones": [{"name": "Data quality assessment of the refugee CPIMS+ instance completed, with findings documented and priority data issues identified", "dueDate": "2026-09-30", "status": "In Progress", "owner": "Bayo and Fekadu"}, {"name": "Data from the refugee CPIMS+ instance migrated to the national CPIMS+ instance, with successful validation and completion confirmed.", "dueDate": "2026-12-30", "status": "In Progress", "owner": "Bayo and Fekadu"}]}, {"initiative": "CRVS (Birth Registration)", "section": "Child Protection", "owner": "Tsige, Fasika", "priority": "High", "overallStatus": "In Progress", "progress": 0, "action": "No management action recorded.", "milestones": [{"name": "TOR for the procurement of biometric kits finalized.", "dueDate": "2026-06-30", "status": "Not Started", "owner": "Bayo"}, {"name": "Biometric kits procured, deployed, and relevant ministry staff trained on their use and basic management", "dueDate": "2026-09-30", "status": "Not Started", "owner": "Bayo"}, {"name": "TOR for procurement of OCR-enabled scanners finalized", "dueDate": "2026-06-30", "status": "Not Started", "owner": "Bayo"}, {"name": "OCR-enabled scanners procured for digitization of paper-based birth registration records", "dueDate": "2026-09-30", "status": "Not Started", "owner": "Bayo"}, {"name": "Required language configurations integrated into the CRVS system (Amharic, Afar and Somali)", "dueDate": "2026-06-30", "status": "Not Started", "owner": "Bayo"}, {"name": "CRVS mobile application and offline capabilities enhanced and operationalized", "dueDate": "2026-09-30", "status": "In Progress", "owner": "Bayo"}, {"name": "Commencement of CRVS system deployment in Addis Ababa, Afar, Amhara, and Somali (with relevant civil registry staff trained at all levels)", "dueDate": "2026-09-30", "status": "Not Started", "owner": "Bayo"}]}, {"initiative": "EMIS Enterprise", "section": "Education", "owner": "Rahel", "priority": "High", "overallStatus": "In Progress", "progress": 3, "action": "No management action recorded.", "milestones": [{"name": "2,580 laptops procured and delivered for EMIS school-level data entry", "dueDate": "2026-06-30", "status": "In Progress", "owner": "Bayo"}, {"name": "Teachers trained on accurate and timely school data entry into EMIS", "dueDate": "2026-07-30", "status": "Not Started", "owner": "Bayo"}, {"name": "Woreda and Regional Education Bureau staff trained on data analytics for evidence-based planning and decision-making", "dueDate": "2026-07-30", "status": "Not Started", "owner": "Bayo"}]}, {"initiative": "Ethiopia Learning Passport", "section": "Education", "owner": "Swadchet", "priority": "High", "overallStatus": "In Progress", "progress": 0, "action": "No management action recorded.", "milestones": [{"name": "828 tablets procured and delivered to support learning for children with disabilities and Female Teachers’ Leadership training", "dueDate": "2026-07-30", "status": "In Progress", "owner": "Bayo"}, {"name": "Digital content for children with disabilities and Female Teachers’ Leadership developed and made available for use", "dueDate": "2026-07-30", "status": "In Progress", "owner": "Bayo"}, {"name": "Site readiness assessments completed for 76 schools under STEP and 4 secondary schools and 20 primary schools under the Opportunity Fund", "dueDate": "2026-07-30", "status": "In Progress", "owner": "Bayo"}, {"name": "Establishment and equipping of Learning Passport-enabled digital learning centres completed in targeted STEP sites", "dueDate": "2026-08-30", "status": "Not Started", "owner": "Bayo"}, {"name": "Establishment of digital learning hubs completed in 4 secondary schools and 20 primary schools under the Opportunity Fund", "dueDate": "2026-08-30", "status": "Not Started", "owner": "Bayo"}]}, {"initiative": "GIGA School Connectivity", "section": "Education", "owner": "Rudra", "priority": "Medium", "overallStatus": "Not Started", "progress": 50, "action": "No management action recorded.", "milestones": [{"name": "School mapping completed for all 30,346 schools nationwide, of which 91% are primary schools and 8% are secondary schools", "dueDate": "2026-02-28", "status": "Completed", "owner": "Bayo"}, {"name": "School connectivity mapping completed for all 30,346 schools nationwide, of which 91% are primary schools and 8% are secondary schools", "dueDate": "2026-09-30", "status": "Not Started", "owner": "Bayo"}]}, {"initiative": "STEP M&E Dashboard", "section": "Education", "owner": "Tsigereda", "priority": "High", "overallStatus": "Not Started", "progress": 50, "action": "No management action recorded.", "milestones": [{"name": "Author STEP result framework form", "dueDate": "2026-09-30", "status": "Completed", "owner": "Bayo"}, {"name": "Design and deploy dashboard", "dueDate": "2026-05-30", "status": "Not Started", "owner": "Bayo"}]}, {"initiative": "CBHI/SHI Digitization", "section": "Health", "owner": "Hafsa, Andarge", "priority": "High", "overallStatus": "In Progress", "progress": 46, "action": "No management action recorded.", "milestones": [{"name": "Formal launch of the project completed with the EU, MoH, EHIS, and UNICEF", "dueDate": "2026-03-28", "status": "Completed", "owner": "Bayo"}, {"name": "TOR for the development of the costed CBHI and SHI roadmap finalized and approved", "dueDate": "2026-03-30", "status": "Completed", "owner": "Bayo"}, {"name": "Institutional vendor contracted and onboarded to develop the costed CBHI and SHI roadmap", "dueDate": "2026-05-30", "status": "In Progress", "owner": "Bayo"}, {"name": "Costed CBHI and SHI roadmap developed, validated, and endorsed", "dueDate": "2026-10-30", "status": "Not Started", "owner": "Bayo"}, {"name": "Implementation of the CBHI scheme rollout initiated across the targeted 150 schemes", "dueDate": "2026-12-30", "status": "Not Started", "owner": "Bayo"}]}, {"initiative": "RCCE and Community based disease monitoring and response", "section": "Health", "owner": "Hnin", "priority": "Medium", "overallStatus": "At Risk", "progress": 0, "action": "No management action recorded.", "milestones": [{"name": "Present the initiative to the EPHI leadership at MOH", "dueDate": "2026-06-30", "status": "At Risk", "owner": "Bayo"}, {"name": "Rollout the implementation of the initiative across the targeted regions", "dueDate": "2026-12-30", "status": "At Risk", "owner": "Bayo"}]}, {"initiative": "eCHIS Digitization", "section": "Health", "owner": "Andarge", "priority": "Low", "overallStatus": "In Progress", "progress": 5, "action": "No management action recorded.", "milestones": [{"name": "Comprehensive mapping of UNICEF and partner contributions to eCHIS implementation completed", "dueDate": "2026-05-30", "status": "In Progress", "owner": "Bayo"}, {"name": "Device needs assessment conducted, priority gaps validated, and funding priorities established", "dueDate": "2026-06-30", "status": "Not Started", "owner": "Bayo"}]}, {"initiative": "Supply Chain Stregthening", "section": "Nutrition", "owner": "Sanjay", "priority": "High", "overallStatus": "In Progress", "progress": 37, "action": "No management action recorded.", "milestones": [{"name": "Proposal to FCDO and ECHO", "dueDate": "2026-05-15", "status": "Completed", "owner": "Bayo"}, {"name": "Develop work plan for phase 1: Landscape assessment", "dueDate": "2026-05-15", "status": "In Progress", "owner": "Bayo"}, {"name": "Finalise Phase 1", "dueDate": "2026-08-30", "status": "Not Started", "owner": "Bayo"}]}, {"initiative": "Egg Powder Initiative", "section": "Nutrition", "owner": "Ramadhani, Nardos", "priority": "High", "overallStatus": "Not Started", "progress": 43, "action": "No management action recorded.", "milestones": [{"name": "Development of the business model and operational plan for the egg powder initiative completed, including agreed operating model, partner roles, costing, and distribution pathways", "dueDate": "2026-04-15", "status": "Completed", "owner": "Bayo"}, {"name": "Procurement of egg powder machinery", "dueDate": "2026-12-15", "status": "Not Started", "owner": "Bayo"}, {"name": "Production of egg powder", "dueDate": "2026-12-15", "status": "Not Started", "owner": "Bayo"}]}, {"initiative": "Digital Social Registry", "section": "Social Policy", "owner": "Daniel, Ereblina", "priority": "High", "overallStatus": "In Progress", "progress": 5, "action": "No management action recorded.", "milestones": [{"name": "Develop capacity building concept note and TOR", "dueDate": "2026-05-10", "status": "In Progress", "owner": "Bayo"}, {"name": "Capacity-building of key stakeholders completed through rollout of the Transform social protection training course to support objective assessment of the social registry enterprise architecture", "dueDate": "2026-06-30", "status": "Not Started", "owner": "Bayo"}]}, {"initiative": "Improved Sanitation with Sato Pans and RapidPro", "section": "WASH", "owner": "Netsanet", "priority": "Medium", "overallStatus": "Completed", "progress": 100, "action": "No management action recorded.", "milestones": [{"name": "Donor reporting completed", "dueDate": "2026-06-30", "status": "Completed", "owner": "Bayo, Nigatu"}]}, {"initiative": "Groundwater Mapping (GWM)", "section": "WASH", "owner": "Victor", "priority": "Medium", "overallStatus": "Not Started", "progress": 0, "action": "No management action recorded.", "milestones": [{"name": "Evidence on the effectiveness, cost-efficiency, and scalability of TEM for groundwater mapping documented and validated for expansion to additional woredas.", "dueDate": "2026-06-30", "status": "Not Started", "owner": "Bayo"}, {"name": "Institutional partnership and financing options for long-term sustainability of the initiative identified, agreed, and advanced", "dueDate": "2026-06-30", "status": "Not Started", "owner": "Bayo"}, {"name": "Support provided to establish shared data systems and data governance arrangements for groundwater mapping between government institutions and RWBs", "dueDate": "2026-06-30", "status": "Not Started", "owner": "Bayo"}]}, {"initiative": "Complaint and Feedback Mechanism (CFM)", "section": "Cross-Sector", "owner": "Gildas", "priority": "High", "overallStatus": "In Progress", "progress": 60, "action": "No management action recorded.", "milestones": [{"name": "CFM status assessment completed, documented and shared through PMT", "dueDate": "2026-04-30", "status": "Completed", "owner": "Bayo, Berhan"}, {"name": "AAP intake form and MS Teams telephony intake form designed and finalized", "dueDate": "2026-04-30", "status": "Completed", "owner": "Bayo, Berhan"}, {"name": "Field teams and implementing partners trained on CFM intake, documentation, and referral procedures", "dueDate": "2026-06-30", "status": "In Progress", "owner": "Bayo, Berhan"}, {"name": "Feedback data pipeline using InForm and Power BI developed and operationalized, with options for linking feedback data to eTools assessed and documented", "dueDate": "2026-06-30", "status": "In Progress", "owner": "Bayo, Berhan"}]}, {"initiative": "Project Alpha", "section": "Cross-Sector", "owner": "Laura", "priority": "High", "overallStatus": "In Progress", "progress": 70, "action": "No management action recorded.", "milestones": [{"name": "Case study documenting the operationalization of the clean energy credit approach and its potential to sustain O&M of solarized WASH and health assets completed", "dueDate": "2026-06-30", "status": "In Progress", "owner": "Bayo, Wale"}]}, {"initiative": "MCF-Seed funding", "section": "Cross-Sector", "owner": "Leul", "priority": "High", "overallStatus": "In Progress", "progress": 20, "action": "No management action recorded.", "milestones": [{"name": "Selection process for 100 business ideas completed, with shortlisted enterprises identified for seed funding of USD 4,000–5,000 each, and a structured mentorship and coaching model designed", "dueDate": "2026-06-30", "status": "Not Started", "owner": "Bayo"}, {"name": "Seed funding disbursed (with mentorship support)", "dueDate": "2026-06-30", "status": "In Progress", "owner": "Bayo"}]}, {"initiative": "MCF-OSC MIS", "section": "Cross-Sector", "owner": "Fanaye", "priority": "High", "overallStatus": "Not Started", "progress": 0, "action": "No management action recorded.", "milestones": [{"name": "Design OSC MIS", "dueDate": "2026-12-30", "status": "Not Started", "owner": "Bayo"}]}, {"initiative": "MCF-M&E", "section": "Cross-Sector", "owner": "Fanaye", "priority": "High", "overallStatus": "In Progress", "progress": 10, "action": "No management action recorded.", "milestones": [{"name": "Design M&E realt-time dashboard", "dueDate": "2026-12-30", "status": "In Progress", "owner": "Bayo"}]}, {"initiative": "CPD indicator framework", "section": "Cross-Sector", "owner": "Getachew", "priority": "High", "overallStatus": "In Progress", "progress": 10, "action": "No management action recorded.", "milestones": [{"name": "MS Fabric data pipeline design for ECO’s 2025–2030 CPD indicator framework completed in collaboration with the Regional Office", "dueDate": "2026-12-30", "status": "In Progress", "owner": "Bayo"}]}];
+    const initiatives = [{"initiativeId": "CP001", "initiative": "CPSS Benchmarking and Refugee Inclusion Tool", "section": "Child Protection", "owner": "Harrriet, Addis", "priority": "High", "overallStatus": "On Track", "progress": 40, "action": "No management action recorded.", "budget": 75000, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Pilot", "phase": "Phase 5: Developing or Adapting", "milestones": [{"name": "Revision and pre-testing of the CPSS data collection tool completed", "order": 1, "dueDate": "2026-05-30", "status": "In Progress", "progress": 95, "owner": "Bayo and Fekadu", "notes": ""}, {"name": "Revision and pre-testing of the RIT data collection tool completed", "order": 2, "dueDate": "2026-05-30", "status": "In Progress", "progress": 95, "owner": "Bayo and Fekadu", "notes": ""}, {"name": "Training of MoWSA, UNHCR, and RRS staff on data entry and submission completed", "order": 3, "dueDate": "2026-06-30", "status": "Not Started", "progress": 0, "owner": "Bayo and Fekadu", "notes": ""}, {"name": "Development and deployment of the CPSS data pipeline and dashboard completed", "order": 4, "dueDate": "2026-06-30", "status": "In Progress", "progress": 50, "owner": "Bayo and Fekadu", "notes": ""}, {"name": "Development and deployment of the RIT data pipeline and dashboard completed", "order": 5, "dueDate": "2026-06-30", "status": "Not Started", "progress": 0, "owner": "Bayo and Fekadu", "notes": ""}, {"name": "Ongoing maintenance and technical support for CPSS and RIT data pipelines and dashboards provided", "order": 6, "dueDate": "2026-12-30", "status": "Not Started", "progress": 0, "owner": "Bayo and Fekadu", "notes": ""}]}, {"initiativeId": "CP002", "initiative": "International Adoption System Digitization (FTR)", "section": "Child Protection", "owner": "Harriet", "priority": "High", "overallStatus": "Delayed", "progress": 25, "action": "No management action recorded.", "budget": 80000, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Design", "phase": "Phase 4: Implementation Planning", "milestones": [{"name": "Scanners with OCR capability procured, installed, tested, and ready for operational use in document digitization.", "order": 1, "dueDate": "2026-06-30", "status": "At Risk", "progress": 50, "owner": "Bayo and Fekadu", "notes": ""}, {"name": "A total of 100,000 international adoption paper records digitized, OCR-processed, and stored in searchable digital format.", "order": 2, "dueDate": "2026-12-30", "status": "At Risk", "progress": 0, "owner": "Bayo and Fekadu", "notes": ""}]}, {"initiativeId": "CP003", "initiative": "CPIMS+/PRIMERO", "section": "Child Protection", "owner": "Harriet, Wossen", "priority": "Medium", "overallStatus": "On Track", "progress": 10, "action": "No management action recorded.", "budget": 252811, "budgetUtilisation": 0, "targetReach": 22000, "actualReach": null, "stage": "Scale & Sustain", "phase": "Phase 9: Scaling Up", "milestones": [{"name": "Data quality assessment of the refugee CPIMS+ instance completed, with findings documented and priority data issues identified", "order": 1, "dueDate": "2026-09-30", "status": "In Progress", "progress": 20, "owner": "Bayo and Fekadu", "notes": ""}, {"name": "Data from the refugee CPIMS+ instance migrated to the national CPIMS+ instance, with successful validation and completion confirmed.", "order": 2, "dueDate": "2026-12-30", "status": "In Progress", "progress": 0, "owner": "Bayo and Fekadu", "notes": ""}]}, {"initiativeId": "CP004", "initiative": "CRVS (Birth Registration)", "section": "Child Protection", "owner": "Tsige, Fasika", "priority": "High", "overallStatus": "At Risk", "progress": 0, "action": "No management action recorded.", "budget": 1408067, "budgetUtilisation": 0, "targetReach": 20000, "actualReach": null, "stage": "Pilot", "phase": "Phase 5: Developing or Adapting", "milestones": [{"name": "TOR for the procurement of biometric kits finalized.", "order": 1, "dueDate": "2026-06-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "Biometric kits procured, deployed, and relevant ministry staff trained on their use and basic management", "order": 2, "dueDate": "2026-09-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "TOR for procurement of OCR-enabled scanners finalized", "order": 3, "dueDate": "2026-06-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "OCR-enabled scanners procured for digitization of paper-based birth registration records", "order": 4, "dueDate": "2026-09-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "Required language configurations integrated into the CRVS system (Amharic, Afar and Somali)", "order": 5, "dueDate": "2026-06-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "CRVS mobile application and offline capabilities enhanced and operationalized", "order": 6, "dueDate": "2026-09-30", "status": "In Progress", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "Commencement of CRVS system deployment in Addis Ababa, Afar, Amhara, and Somali (with relevant civil registry staff trained at all levels)", "order": 7, "dueDate": "2026-09-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "ED001", "initiative": "EMIS Enterprise", "section": "Education", "owner": "Rahel", "priority": "High", "overallStatus": "On Track", "progress": 3, "action": "No management action recorded.", "budget": 1840000, "budgetUtilisation": 0, "targetReach": 3000, "actualReach": null, "stage": "Scale & Sustain", "phase": "Phase 9: Scaling Up", "milestones": [{"name": "2,580 laptops procured and delivered for EMIS school-level data entry", "order": 1, "dueDate": "2026-06-30", "status": "In Progress", "progress": 10, "owner": "Bayo", "notes": ""}, {"name": "Teachers trained on accurate and timely school data entry into EMIS", "order": 2, "dueDate": "2026-07-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "Woreda and Regional Education Bureau staff trained on data analytics for evidence-based planning and decision-making", "order": 3, "dueDate": "2026-07-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "ED002", "initiative": "Ethiopia Learning Passport", "section": "Education", "owner": "Swadchet", "priority": "High", "overallStatus": "On Track", "progress": 0, "action": "No management action recorded.", "budget": 790000, "budgetUtilisation": 0, "targetReach": 5000, "actualReach": null, "stage": "Pilot", "phase": "Phase 5: Developing or Adapting", "milestones": [{"name": "828 tablets procured and delivered to support learning for children with disabilities and Female Teachers’ Leadership training", "order": 1, "dueDate": "2026-07-30", "status": "In Progress", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "Digital content for children with disabilities and Female Teachers’ Leadership developed and made available for use", "order": 2, "dueDate": "2026-07-30", "status": "In Progress", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "Site readiness assessments completed for 76 schools under STEP and 4 secondary schools and 20 primary schools under the Opportunity Fund", "order": 3, "dueDate": "2026-07-30", "status": "In Progress", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "Establishment and equipping of Learning Passport-enabled digital learning centres completed in targeted STEP sites", "order": 4, "dueDate": "2026-08-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "Establishment of digital learning hubs completed in 4 secondary schools and 20 primary schools under the Opportunity Fund", "order": 5, "dueDate": "2026-08-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "ED003", "initiative": "GIGA School Connectivity", "section": "Education", "owner": "Rudra", "priority": "Medium", "overallStatus": "On Track", "progress": 50, "action": "No management action recorded.", "budget": 0, "budgetUtilisation": 0, "targetReach": 30000, "actualReach": null, "stage": "Pilot", "phase": "Phase 6: Piloting and Evidence Generation", "milestones": [{"name": "School mapping completed for all 30,346 schools nationwide, of which 91% are primary schools and 8% are secondary schools", "order": 1, "dueDate": "2026-02-28", "status": "Completed", "progress": 100, "owner": "Bayo", "notes": ""}, {"name": "School connectivity mapping completed for all 30,346 schools nationwide, of which 91% are primary schools and 8% are secondary schools", "order": 2, "dueDate": "2026-09-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "ED004", "initiative": "STEP M&E Dashboard", "section": "Education", "owner": "Tsigereda", "priority": "High", "overallStatus": "On Track", "progress": 50, "action": "No management action recorded.", "budget": 0, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Design", "phase": "Phase 4: Implementation Planning", "milestones": [{"name": "Author STEP result framework form", "order": 1, "dueDate": "2026-09-30", "status": "Completed", "progress": 100, "owner": "Bayo", "notes": ""}, {"name": "Design and deploy dashboard", "order": 2, "dueDate": "2026-05-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "H001", "initiative": "CBHI/SHI Digitization", "section": "Health", "owner": "Hafsa, Andarge", "priority": "High", "overallStatus": "On Track", "progress": 46, "action": "No management action recorded.", "budget": 2000000, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Design", "phase": "Phase 4: Implementation Planning", "milestones": [{"name": "Formal launch of the project completed with the EU, MoH, EHIS, and UNICEF", "order": 1, "dueDate": "2026-03-28", "status": "Completed", "progress": 100, "owner": "Bayo", "notes": ""}, {"name": "TOR for the development of the costed CBHI and SHI roadmap finalized and approved", "order": 2, "dueDate": "2026-03-30", "status": "Completed", "progress": 100, "owner": "Bayo", "notes": ""}, {"name": "Institutional vendor contracted and onboarded to develop the costed CBHI and SHI roadmap", "order": 3, "dueDate": "2026-05-30", "status": "In Progress", "progress": 30, "owner": "Bayo", "notes": ""}, {"name": "Costed CBHI and SHI roadmap developed, validated, and endorsed", "order": 4, "dueDate": "2026-10-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "Implementation of the CBHI scheme rollout initiated across the targeted 150 schemes", "order": 5, "dueDate": "2026-12-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "H002", "initiative": "RCCE and Community based disease monitoring and response", "section": "Health", "owner": "Hnin", "priority": "Medium", "overallStatus": "Delayed", "progress": 0, "action": "No management action recorded.", "budget": 350000, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Ideate", "phase": "Phase 2: Preparation & Scoping", "milestones": [{"name": "Present the initiative to the EPHI leadership at MOH", "order": 1, "dueDate": "2026-06-30", "status": "At Risk", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "Rollout the implementation of the initiative across the targeted regions", "order": 2, "dueDate": "2026-12-30", "status": "At Risk", "progress": 0, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "H003", "initiative": "eCHIS Digitization", "section": "Health", "owner": "Andarge", "priority": "Low", "overallStatus": "On Track", "progress": 5, "action": "No management action recorded.", "budget": 0, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Scale & Sustain", "phase": "Phase 9: Scaling Up", "milestones": [{"name": "Comprehensive mapping of UNICEF and partner contributions to eCHIS implementation completed", "order": 1, "dueDate": "2026-05-30", "status": "In Progress", "progress": 10, "owner": "Bayo", "notes": ""}, {"name": "Device needs assessment conducted, priority gaps validated, and funding priorities established", "order": 2, "dueDate": "2026-06-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "N001", "initiative": "Supply Chain Stregthening", "section": "Nutrition", "owner": "Sanjay", "priority": "High", "overallStatus": "On Track", "progress": 37, "action": "No management action recorded.", "budget": 450000, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Ideate", "phase": "Phase 2: Preparation & Scoping", "milestones": [{"name": "Proposal to FCDO and ECHO", "order": 1, "dueDate": "2026-05-15", "status": "Completed", "progress": 100, "owner": "Bayo", "notes": ""}, {"name": "Develop work plan for phase 1: Landscape assessment", "order": 2, "dueDate": "2026-05-15", "status": "In Progress", "progress": 10, "owner": "Bayo", "notes": ""}, {"name": "Finalise Phase 1", "order": 3, "dueDate": "2026-08-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "N002", "initiative": "Egg Powder Initiative", "section": "Nutrition", "owner": "Ramadhani, Nardos", "priority": "High", "overallStatus": "On Track", "progress": 43, "action": "No management action recorded.", "budget": 1200000, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Pilot", "phase": "Phase 5: Developing or Adapting", "milestones": [{"name": "Development of the business model and operational plan for the egg powder initiative completed, including agreed operating model, partner roles, costing, and distribution pathways", "order": 1, "dueDate": "2026-04-15", "status": "Completed", "progress": 100, "owner": "Bayo", "notes": ""}, {"name": "Procurement of egg powder machinery", "order": 2, "dueDate": "2026-12-15", "status": "Not Started", "progress": 30, "owner": "Bayo", "notes": ""}, {"name": "Production of egg powder", "order": 3, "dueDate": "2026-12-15", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "SP001", "initiative": "Digital Social Registry", "section": "Social Policy", "owner": "Daniel, Ereblina", "priority": "High", "overallStatus": "On Track", "progress": 5, "action": "No management action recorded.", "budget": 0, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Ideate", "phase": "Phase 2: Preparation & Scoping", "milestones": [{"name": "Develop capacity building concept note and TOR", "order": 1, "dueDate": "2026-05-10", "status": "In Progress", "progress": 10, "owner": "Bayo", "notes": ""}, {"name": "Capacity-building of key stakeholders completed through rollout of the Transform social protection training course to support objective assessment of the social registry enterprise architecture", "order": 2, "dueDate": "2026-06-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "W001", "initiative": "Improved Sanitation with Sato Pans and RapidPro", "section": "WASH", "owner": "Netsanet", "priority": "Medium", "overallStatus": "Completed", "progress": 100, "action": "No management action recorded.", "budget": 26481, "budgetUtilisation": 25202, "targetReach": 250000, "actualReach": 250000, "stage": "Scale & Sustain", "phase": "Phase 9: Scaling Up", "milestones": [{"name": "Donor reporting completed", "order": 1, "dueDate": "2026-06-30", "status": "Completed", "progress": 100, "owner": "Bayo, Nigatu", "notes": ""}]}, {"initiativeId": "W002", "initiative": "Groundwater Mapping (GWM)", "section": "WASH", "owner": "Victor", "priority": "Medium", "overallStatus": "At Risk", "progress": 0, "action": "No management action recorded.", "budget": 230000, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Ideate", "phase": "Phase 2: Preparation & Scoping", "milestones": [{"name": "Evidence on the effectiveness, cost-efficiency, and scalability of TEM for groundwater mapping documented and validated for expansion to additional woredas.", "order": 1, "dueDate": "2026-06-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "Institutional partnership and financing options for long-term sustainability of the initiative identified, agreed, and advanced", "order": 2, "dueDate": "2026-06-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "Support provided to establish shared data systems and data governance arrangements for groundwater mapping between government institutions and RWBs", "order": 3, "dueDate": "2026-06-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "CC001", "initiative": "Complaint and Feedback Mechanism (CFM)", "section": "Cross-Sector", "owner": "Gildas", "priority": "High", "overallStatus": "On Track", "progress": 60, "action": "No management action recorded.", "budget": 0, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Design", "phase": "Phase 4: Implementation Planning", "milestones": [{"name": "CFM status assessment completed, documented and shared through PMT", "order": null, "dueDate": "2026-04-30", "status": "Completed", "progress": 100, "owner": "Bayo, Berhan", "notes": ""}, {"name": "AAP intake form and MS Teams telephony intake form designed and finalized", "order": null, "dueDate": "2026-04-30", "status": "Completed", "progress": 100, "owner": "Bayo, Berhan", "notes": ""}, {"name": "Field teams and implementing partners trained on CFM intake, documentation, and referral procedures", "order": null, "dueDate": "2026-06-30", "status": "In Progress", "progress": 20, "owner": "Bayo, Berhan", "notes": ""}, {"name": "Feedback data pipeline using InForm and Power BI developed and operationalized, with options for linking feedback data to eTools assessed and documented", "order": null, "dueDate": "2026-06-30", "status": "In Progress", "progress": 20, "owner": "Bayo, Berhan", "notes": ""}]}, {"initiativeId": "CC002", "initiative": "Project Alpha", "section": "Cross-Sector", "owner": "Laura", "priority": "High", "overallStatus": "On Track", "progress": 70, "action": "No management action recorded.", "budget": 30000, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Pilot", "phase": "Phase 6: Piloting and Evidence Generation", "milestones": [{"name": "Case study documenting the operationalization of the clean energy credit approach and its potential to sustain O&M of solarized WASH and health assets completed", "order": null, "dueDate": "2026-06-30", "status": "In Progress", "progress": 70, "owner": "Bayo, Wale", "notes": ""}]}, {"initiativeId": "CC003", "initiative": "MCF-Seed funding", "section": "Cross-Sector", "owner": "Leul", "priority": "High", "overallStatus": "On Track", "progress": 20, "action": "No management action recorded.", "budget": 500000, "budgetUtilisation": 0, "targetReach": 45746, "actualReach": null, "stage": "Design", "phase": "Phase 4: Implementation Planning", "milestones": [{"name": "Selection process for 100 business ideas completed, with shortlisted enterprises identified for seed funding of USD 4,000–5,000 each, and a structured mentorship and coaching model designed", "order": null, "dueDate": "2026-06-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}, {"name": "Seed funding disbursed (with mentorship support)", "order": null, "dueDate": "2026-06-30", "status": "In Progress", "progress": 40, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "CC003", "initiative": "MCF-OSC MIS", "section": "Cross-Sector", "owner": "Fanaye", "priority": "High", "overallStatus": "Not Started", "progress": 0, "action": "No management action recorded.", "budget": 0, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Ideate", "phase": "Phase 1: Opportunity & Initiation", "milestones": [{"name": "Design OSC MIS", "order": null, "dueDate": "2026-12-30", "status": "Not Started", "progress": 0, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "CC003", "initiative": "MCF-M&E", "section": "Cross-Sector", "owner": "Fanaye", "priority": "High", "overallStatus": "On Track", "progress": 10, "action": "No management action recorded.", "budget": 0, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Design", "phase": "Phase 3: Analysis and Design", "milestones": [{"name": "Design M&E realt-time dashboard", "order": null, "dueDate": "2026-12-30", "status": "In Progress", "progress": 10, "owner": "Bayo", "notes": ""}]}, {"initiativeId": "CC004", "initiative": "CPD indicator framework", "section": "Cross-Sector", "owner": "Getachew", "priority": "High", "overallStatus": "On Track", "progress": 10, "action": "No management action recorded.", "budget": 0, "budgetUtilisation": 0, "targetReach": null, "actualReach": null, "stage": "Design", "phase": "Phase 3: Analysis and Design", "milestones": [{"name": "MS Fabric data pipeline design for ECO’s 2025–2030 CPD indicator framework completed in collaboration with the Regional Office", "order": null, "dueDate": "2026-12-30", "status": "In Progress", "progress": 10, "owner": "Bayo", "notes": ""}]}];
 
     const statusClassMap = {
       "Completed": "completed",
@@ -410,18 +331,48 @@
     };
 
     const statusOrder = ["Completed", "In Progress", "At Risk", "Delayed", "Not Started"];
-    let statusChart;
-    let sectionChart;
+    let statusChart, sectionChart, budgetChart;
 
     const sectionFilter = document.getElementById("sectionFilter");
     const statusFilter = document.getElementById("statusFilter");
     const priorityFilter = document.getElementById("priorityFilter");
+    const stageFilter = document.getElementById("stageFilter");
+    const phaseFilter = document.getElementById("phaseFilter");
     const searchInput = document.getElementById("searchInput");
+
+    function formatNumber(value) {
+      if (value === null || value === undefined || value === "") return "—";
+      return Number(value).toLocaleString("en-US");
+    }
+
+    function formatCurrency(value) {
+      if (!value) return "—";
+      return "$" + Number(value).toLocaleString("en-US", { maximumFractionDigits: 0 });
+    }
+
+    function formatShortCurrency(value) {
+      if (!value) return "$0";
+      const n = Number(value);
+      if (Math.abs(n) >= 1000000) return "$" + (n / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+      if (Math.abs(n) >= 1000) return "$" + (n / 1000).toFixed(0) + "K";
+      return "$" + n.toLocaleString("en-US");
+    }
+
+    function stageClass(stage) {
+      return String(stage || "").toLowerCase().replace(/&/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "not-started";
+    }
 
     function flattenMilestones(data) {
       return data.flatMap(item => item.milestones.map(milestone => ({
+        initiativeId: item.initiativeId,
         initiative: item.initiative,
         section: item.section,
+        stage: item.stage,
+        phase: item.phase,
+        budget: item.budget,
+        budgetUtilisation: item.budgetUtilisation,
+        targetReach: item.targetReach,
+        actualReach: item.actualReach,
         owner: milestone.owner,
         overallOwner: item.owner,
         priority: item.priority,
@@ -431,41 +382,40 @@
       })));
     }
 
+    function populateSelect(select, values) {
+      select.querySelectorAll("option:not([value='All'])").forEach(option => option.remove());
+      values.forEach(value => select.append(new Option(value, value)));
+    }
+
     function populateFilters() {
-      sectionFilter.querySelectorAll("option:not([value='All'])").forEach(option => option.remove());
-      statusFilter.querySelectorAll("option:not([value='All'])").forEach(option => option.remove());
-      priorityFilter.querySelectorAll("option:not([value='All'])").forEach(option => option.remove());
-
-      const sections = [...new Set(initiatives.map(item => item.section))].sort();
-      const statuses = [...new Set([...initiatives.map(item => item.overallStatus), ...flattenMilestones(initiatives).map(item => item.status)])].sort();
-      const priorities = [...new Set(initiatives.map(item => item.priority))].sort();
-
-      sections.forEach(section => sectionFilter.append(new Option(section, section)));
-      statuses.forEach(status => statusFilter.append(new Option(status, status)));
-      priorities.forEach(priority => priorityFilter.append(new Option(priority, priority)));
+      populateSelect(sectionFilter, [...new Set(initiatives.map(item => item.section))].sort());
+      populateSelect(statusFilter, [...new Set([...initiatives.map(item => item.overallStatus), ...flattenMilestones(initiatives).map(item => item.status)])].sort());
+      populateSelect(priorityFilter, [...new Set(initiatives.map(item => item.priority))].sort());
+      populateSelect(stageFilter, [...new Set(initiatives.map(item => item.stage))].sort());
+      populateSelect(phaseFilter, [...new Set(initiatives.map(item => item.phase))].sort());
     }
 
     function getFilteredInitiatives() {
       const selectedSection = sectionFilter.value;
       const selectedStatus = statusFilter.value;
       const selectedPriority = priorityFilter.value;
+      const selectedStage = stageFilter.value;
+      const selectedPhase = phaseFilter.value;
       const search = searchInput.value.toLowerCase().trim();
 
       return initiatives.filter(item => {
         const sectionMatch = selectedSection === "All" || item.section === selectedSection;
         const priorityMatch = selectedPriority === "All" || item.priority === selectedPriority;
+        const stageMatch = selectedStage === "All" || item.stage === selectedStage;
+        const phaseMatch = selectedPhase === "All" || item.phase === selectedPhase;
         const statusMatch = selectedStatus === "All" || item.overallStatus === selectedStatus || item.milestones.some(m => m.status === selectedStatus);
         const searchableText = [
-          item.initiative,
-          item.section,
-          item.owner,
-          item.priority,
-          item.overallStatus,
-          item.action,
-          ...item.milestones.flatMap(m => [m.name, m.status, m.owner, m.dueDate])
+          item.initiativeId, item.initiative, item.section, item.owner, item.priority,
+          item.overallStatus, item.stage, item.phase, item.action,
+          ...item.milestones.flatMap(m => [m.name, m.status, m.owner, m.dueDate, m.notes])
         ].join(" ").toLowerCase();
         const searchMatch = !search || searchableText.includes(search);
-        return sectionMatch && priorityMatch && statusMatch && searchMatch;
+        return sectionMatch && priorityMatch && stageMatch && phaseMatch && statusMatch && searchMatch;
       });
     }
 
@@ -474,22 +424,21 @@
       const completed = milestones.filter(m => m.status === "Completed").length;
       const delayed = milestones.filter(m => m.status === "Delayed").length;
       const atRisk = milestones.filter(m => m.status === "At Risk").length;
-      const dueSoon = milestones.filter(m => {
-        const due = new Date(m.dueDate);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const next60 = new Date(today);
-        next60.setDate(today.getDate() + 60);
-        return due >= today && due <= next60 && m.status !== "Completed";
-      }).length;
+      const totalBudget = data.reduce((sum, item) => sum + Number(item.budget || 0), 0);
+      const usedBudget = data.reduce((sum, item) => sum + Number(item.budgetUtilisation || 0), 0);
+      const targetReach = data.reduce((sum, item) => sum + Number(item.targetReach || 0), 0);
+      const actualReach = data.reduce((sum, item) => sum + Number(item.actualReach || 0), 0);
       const completionRate = milestones.length ? Math.round((completed / milestones.length) * 100) : 0;
 
       const cards = [
-        { label: "Total Initiatives", value: data.length, hint: "Active initiatives in the work plan" },
-        { label: "Total Milestones", value: milestones.length, hint: "Tracked deliverables and decision points" },
+        { label: "Total Initiatives", value: data.length, hint: "Active initiatives" },
+        { label: "Total Milestones", value: milestones.length, hint: "Tracked deliverables" },
         { label: "Completion Rate", value: `${completionRate}%`, hint: `${completed} milestones completed` },
         { label: "At Risk / Delayed", value: atRisk + delayed, hint: `${atRisk} at risk, ${delayed} delayed` },
-        { label: "Due in 60 Days", value: dueSoon, hint: "Requires follow-up before deadline" }
+        { label: "Total Budget", value: formatShortCurrency(totalBudget), hint: "Across filtered initiatives" },
+        { label: "Budget Used", value: formatShortCurrency(usedBudget), hint: `${totalBudget ? Math.round((usedBudget / totalBudget) * 100) : 0}% utilization` },
+        { label: "Target Reach", value: formatNumber(targetReach), hint: "Planned beneficiaries / users" },
+        { label: "Actual Reach", value: formatNumber(actualReach), hint: `${targetReach ? Math.round((actualReach / targetReach) * 100) : 0}% of target` }
       ];
 
       document.getElementById("summaryCards").innerHTML = cards.map(card => `
@@ -503,7 +452,6 @@
 
     function renderInitiatives(data) {
       const container = document.getElementById("initiativeList");
-
       if (!data.length) {
         container.innerHTML = `<div class="empty-state">No initiatives match the selected filters.</div>`;
         return;
@@ -515,17 +463,29 @@
             <div>
               <h3 class="initiative-title">${item.initiative}</h3>
               <div class="initiative-meta">
+                <strong>ID:</strong> ${item.initiativeId} &nbsp; | &nbsp;
                 <strong>Section:</strong> ${item.section} &nbsp; | &nbsp;
                 <strong>Owner:</strong> ${item.owner} &nbsp; | &nbsp;
                 <strong>Priority:</strong> ${item.priority}
+              </div>
+              <div class="initiative-meta">
+                <span class="badge ${stageClass(item.stage)}">${item.stage}</span>
+                <span class="badge not-started" style="margin-left:6px;">${item.phase}</span>
               </div>
             </div>
             <span class="badge ${statusClassMap[item.overallStatus] || 'not-started'}">${item.overallStatus}</span>
           </div>
 
+          <div class="metric-grid">
+            <div class="metric"><div class="metric-label">Budget</div><div class="metric-value">${formatCurrency(item.budget)}</div></div>
+            <div class="metric"><div class="metric-label">Budget Used</div><div class="metric-value">${formatCurrency(item.budgetUtilisation)}</div></div>
+            <div class="metric"><div class="metric-label">Target Reach</div><div class="metric-value">${formatNumber(item.targetReach)}</div></div>
+            <div class="metric"><div class="metric-label">Actual Reach</div><div class="metric-value">${formatNumber(item.actualReach)}</div></div>
+          </div>
+
           <div class="progress-wrap">
-            <div class="progress-bar"><div class="progress-fill" style="width: ${item.progress}%"></div></div>
-            <div class="progress-value">${item.progress}%</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: ${item.progress || 0}%"></div></div>
+            <div class="progress-value">${item.progress || 0}%</div>
           </div>
 
           <div class="timeline" style="--milestone-count: ${item.milestones.length};">
@@ -533,7 +493,8 @@
               <div class="milestone ${statusClassMap[m.status] || 'not-started'}">
                 <div class="milestone-name">${m.name}</div>
                 <div class="milestone-date"><strong>Due:</strong> ${formatDate(m.dueDate)}</div>
-                <div class="milestone-owner"><strong>Owner:</strong> ${m.owner}</div>
+                <div class="milestone-owner"><strong>Owner:</strong> ${m.owner || '—'}</div>
+                <div class="milestone-progress"><strong>Progress:</strong> ${m.progress || 0}%</div>
                 <div style="margin-top: 8px;"><span class="badge ${statusClassMap[m.status] || 'not-started'}">${m.status}</span></div>
               </div>
             `).join("")}
@@ -549,20 +510,25 @@
     function renderTable(data) {
       const rows = flattenMilestones(data).sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
       const table = document.getElementById("milestoneTable");
-
       if (!rows.length) {
-        table.innerHTML = `<tr><td colspan="8" class="empty-state">No milestones match the selected filters.</td></tr>`;
+        table.innerHTML = `<tr><td colspan="15" class="empty-state">No milestones match the selected filters.</td></tr>`;
         return;
       }
-
       table.innerHTML = rows.map(row => `
         <tr>
           <td><strong>${row.initiative}</strong></td>
           <td>${row.section}</td>
+          <td><span class="badge ${stageClass(row.stage)}">${row.stage}</span></td>
+          <td>${row.phase}</td>
+          <td>${formatCurrency(row.budget)}</td>
+          <td>${formatCurrency(row.budgetUtilisation)}</td>
+          <td>${formatNumber(row.targetReach)}</td>
+          <td>${formatNumber(row.actualReach)}</td>
           <td>${row.name}</td>
           <td>${formatDate(row.dueDate)}</td>
           <td><span class="badge ${statusClassMap[row.status] || 'not-started'}">${row.status}</span></td>
-          <td>${row.owner}</td>
+          <td>${row.progress || 0}%</td>
+          <td>${row.owner || '—'}</td>
           <td class="priority-${String(row.priority).toLowerCase()}">${row.priority}</td>
           <td>${row.action}</td>
         </tr>
@@ -571,8 +537,7 @@
 
     function renderCharts(data) {
       if (typeof Chart === "undefined") {
-        document.getElementById("sectionChart").insertAdjacentHTML("afterend", "<p class='initiative-meta'>Charts unavailable because Chart.js could not be loaded.</p>");
-        document.getElementById("statusChart").insertAdjacentHTML("afterend", "<p class='initiative-meta'>Charts unavailable because Chart.js could not be loaded.</p>");
+        document.querySelectorAll("canvas").forEach(canvas => canvas.insertAdjacentHTML("afterend", "<p class='initiative-meta'>Chart unavailable because Chart.js could not be loaded.</p>"));
         return;
       }
 
@@ -584,56 +549,34 @@
         const completed = sectionMilestones.filter(m => m.status === "Completed").length;
         return sectionMilestones.length ? Math.round((completed / sectionMilestones.length) * 100) : 0;
       });
+      const sectionBudget = sectionNames.map(section => data.filter(i => i.section === section).reduce((sum, item) => sum + Number(item.budget || 0), 0));
 
       if (statusChart) statusChart.destroy();
       if (sectionChart) sectionChart.destroy();
-
-      statusChart = new Chart(document.getElementById("statusChart"), {
-        type: "doughnut",
-        data: {
-          labels: statusOrder,
-          datasets: [{
-            data: statusCounts,
-            backgroundColor: ["#16a34a", "#f59e0b", "#f97316", "#dc2626", "#9ca3af"],
-            borderWidth: 0
-          }]
-        },
-        options: {
-          plugins: { legend: { display: false } },
-          cutout: "68%"
-        }
-      });
+      if (budgetChart) budgetChart.destroy();
 
       sectionChart = new Chart(document.getElementById("sectionChart"), {
         type: "bar",
-        data: {
-          labels: sectionNames,
-          datasets: [{
-            label: "Completion %",
-            data: sectionCompletion,
-            backgroundColor: "#1cabe2",
-            borderRadius: 8
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-              max: 100,
-              ticks: { callback: value => `${value}%` }
-            }
-          },
-          plugins: { legend: { display: false } }
-        }
+        data: { labels: sectionNames, datasets: [{ label: "Completion %", data: sectionCompletion, backgroundColor: "#1cabe2", borderRadius: 8 }] },
+        options: { scales: { y: { beginAtZero: true, max: 100, ticks: { callback: value => `${value}%` } } }, plugins: { legend: { display: false } } }
+      });
+
+      budgetChart = new Chart(document.getElementById("budgetChart"), {
+        type: "bar",
+        data: { labels: sectionNames, datasets: [{ label: "Budget", data: sectionBudget, backgroundColor: "#087ca7", borderRadius: 8 }] },
+        options: { scales: { y: { beginAtZero: true, ticks: { callback: value => formatShortCurrency(value) } } }, plugins: { legend: { display: false } } }
+      });
+
+      statusChart = new Chart(document.getElementById("statusChart"), {
+        type: "doughnut",
+        data: { labels: statusOrder, datasets: [{ data: statusCounts, backgroundColor: ["#16a34a", "#f59e0b", "#f97316", "#dc2626", "#9ca3af"], borderWidth: 0 }] },
+        options: { plugins: { legend: { display: false } }, cutout: "68%" }
       });
     }
 
     function formatDate(dateString) {
-      return new Date(dateString).toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric"
-      });
+      if (!dateString) return "—";
+      return new Date(dateString).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
     }
 
     function renderDashboard() {
@@ -644,7 +587,7 @@
       renderCharts(filteredData);
     }
 
-    [sectionFilter, statusFilter, priorityFilter, searchInput].forEach(control => {
+    [sectionFilter, statusFilter, priorityFilter, stageFilter, phaseFilter, searchInput].forEach(control => {
       control.addEventListener("input", renderDashboard);
       control.addEventListener("change", renderDashboard);
     });
