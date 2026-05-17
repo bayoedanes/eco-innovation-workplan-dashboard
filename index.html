@@ -228,12 +228,12 @@ function renderSummary(data) {
   const coreShare = data.length ? Math.round((coreCount / data.length) * 100) : 0;
   const completionRate = milestones.length ? Math.round((completed / milestones.length) * 100) : 0;
   const cards = [
-    { label:"Total Budget", value:money(totalBudget), hint:`Budget used: ${money(totalUsed)}` },
-    { label:"Target Reach", value:numberFmt(targetReach), hint:`Actual reach: ${numberFmt(actualReach)}` },
     { label:"Total Initiatives", value:data.length, hint:`${milestones.length} milestones tracked` },
     { label:"Completion Rate", value:`${completionRate}%`, hint:`${completed} milestones completed` },
-    { label:"At Risk / Delayed", value:atRiskDelayed, hint:"Milestones requiring attention" },
-    { label:"Core Innovation", value:`${coreShare}%`, hint:`Target: ${CORE_TARGET}%` }
+    { label:"At Risk / Delayed", value:atRiskDelayed, hint:"Milestones requiring management attention" },
+    { label:"Core Innovation", value:`${coreShare}%`, hint:`Target: ${CORE_TARGET}%` },
+    { label:"Total Budget", value:money(totalBudget), hint:`Budget used: ${money(totalUsed)}` },
+    { label:"Target Reach", value:numberFmt(targetReach), hint:`Actual reach: ${numberFmt(actualReach)}` }
   ];
   document.getElementById("summaryCards").innerHTML = cards.map(c => `<div class="summary-card"><div class="label">${c.label}</div><div class="value">${c.value}</div><div class="hint">${c.hint}</div></div>`).join("");
 }
