@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ethiopia Initiative Regional Footprint Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <style>
+    :root {
+      --blue:#1cabe2; --blue-dark:#087ca7; --bg:#f4f7fb; --text:#243746; --muted:#64748b; --card:#ffffff; --border:#e5e7eb;
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; background:var(--bg); color:var(--text); }
+    .page { max-width:1500px; margin:0 auto; padding:24px; }
+    .hero {
+      background:linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color:#fff; border-radius:20px; padding:24px 28px; margin-bottom:18px;
+      box-shadow:0 12px 28px rgba(0,0,0,.12);
+    }
+    .hero h1 { margin:0 0 8px; font-size:30px; }
+    .hero p { margin:0; font-size:15px; line-height:1.5; opacity:.96; }
+
+    .top-nav {
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin:0 0 18px;
+    }
+    .top-nav a {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 16px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:#ffffff;
+      color:var(--text);
+      text-decoration:none;
+      font-weight:800;
+      font-size:14px;
+      box-shadow:0 8px 22px rgba(15,23,42,.06);
+    }
+    .top-nav a.active {
+      background:var(--blue);
+      border-color:var(--blue);
+      color:#ffffff;
+    }
+    .top-nav a:hover {
+      border-color:var(--blue);
+    }
+
+    .card {
+      background:var(--card); border:1px solid var(--border); border-radius:18px;
+      box-shadow:0 8px 22px rgba(15,23,42,.06);
+    }
+    .controls { padding:18px 20px; margin-bottom:18px; }
+    .controls h2 { margin:0 0 14px; font-size:20px; }
+    .control-row {
+      display:grid; grid-template-columns:1.5fr 1fr; gap:16px; align-items:start;
+    }
+    .radio-group { display:flex; gap:12px; flex-wrap:wrap; }
+    .radio-pill {
+      display:flex; align-items:center; gap:8px; background:#f8fafc; border:1px solid var(--border);
+      padding:10px 14px; border-radius:999px; font-size:14px;
+    }
+    .helper {
+      color:var(--muted); font-size:13px; line-height:1.5; background:#f8fafc; border:1px solid var(--border);
+      border-radius:14px; padding:12px 14px;
+    }
+    .summary {
+      display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; margin-top:16px;
+    }
+    .summary .metric { padding:16px; }
+    .label { font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.02em; color:var(--muted); margin-bottom:6px; }
+    .value { font-size:28px; font-weight:800; }
+    .hint { font-size:12px; color:var(--muted); margin-top:6px; line-height:1.4; }
+    .layout { display:grid; grid-template-columns:1.6fr .9fr; gap:18px; }
+    .panel { padding:18px; }
+    .panel h3 { margin:0 0 12px; font-size:20px; }
+    #map { width:100%; height:700px; border-radius:16px; overflow:hidden; }
+    .side-stack { display:grid; gap:18px; }
+    .table-wrap { overflow:auto; max-height:350px; border:1px solid var(--border); border-radius:14px; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th, td { padding:10px 12px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top; }
+    th { background:#f8fafc; position:sticky; top:0; z-index:1; }
+    tr:hover td { background:#fbfdff; }
+    .detail {
+      background:#f8fafc; border:1px solid var(--border); border-radius:14px; padding:14px;
+      min-height:220px;
+    }
+    .detail h4 { margin:0 0 10px; font-size:18px; }
+    .detail .count { font-size:34px; font-weight:800; color:var(--blue-dark); margin-bottom:8px; }
+    .list {
+      margin:10px 0 0; padding-left:18px; max-height:240px; overflow:auto;
+    }
+    .list li { margin:0 0 6px; line-height:1.4; }
+    .note {
+      margin-top:12px; color:var(--muted); font-size:12px; line-height:1.5;
+    }
+    .leaflet-control.info {
+      padding:10px 12px; background:#fff; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,.15);
+      font-size:13px; line-height:1.4;
+    }
+    .legend {
+      background:#fff; padding:10px 12px; line-height:1.4; border-radius:10px;
+      box-shadow:0 2px 10px rgba(0,0,0,.15); color:#334155;
+    }
+    .legend i {
+      width:16px; height:16px; float:left; margin-right:8px; opacity:.95;
+    }
+    .error {
+      background:#fff7ed; color:#9a3412; border:1px solid #fed7aa; border-radius:12px; padding:12px 14px; margin-top:12px;
+    }
+    @media (max-width: 1100px) {
+      .layout, .control-row, .summary { grid-template-columns:1fr; }
+      #map { height:560px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <section class="hero">
+    <h1>Regional Footprint of the 22 Initiatives</h1>
+    <p>Interactive choropleth map of Ethiopia showing how many initiatives are present in each region. Hover over a region to see the count, click a region to see the initiative list, and switch between coverage modes using the options below.</p>
+  </section>
+
+  <nav class="top-nav" aria-label="Dashboard navigation">
+    <a href="index.html#overview">Portfolio Overview</a>
+    <a href="index.html#milestone-status">Milestone Status</a>
+    <a href="index.html#cyber-security">Information Security Status</a>
+    <a href="regional_footprint_map.html" class="active">Initiative Geographic Footprint</a>
+  </nav>
+
+  <section class="card controls">
+    <h2>Map Controls</h2>
+    <div class="control-row">
+      <div>
+        <div class="radio-group">
+          <label class="radio-pill"><input type="radio" name="mode" value="explicit" checked /> Explicit regional coverage only</label>
+          <label class="radio-pill"><input type="radio" name="mode" value="inclusive" /> Treat N/A as nationwide</label>
+        </div>
+        <div class="note">Map counts are derived from the dashboard initiative data. Because 15 initiatives have 'N/A' geographic coverage, the map includes two viewing modes: 'Explicit regional coverage only' and 'Treat N/A as nationwide'.</div>
+      </div>
+      <div class="helper">
+        <strong>How to interpret this map</strong><br />
+        <strong>Explicit regional coverage only</strong> counts initiatives only where a region is specifically listed.<br />
+        <strong>Treat N/A as nationwide</strong> adds initiatives with unspecified coverage to every region.
+      </div>
+    </div>
+    <div class="summary">
+      <div class="card metric">
+        <div class="label">Total Initiatives</div>
+        <div class="value">22</div>
+        <div class="hint">All initiatives included in the dashboard</div>
+      </div>
+      <div class="card metric">
+        <div class="label">With Explicit Coverage</div>
+        <div class="value">7</div>
+        <div class="hint">Initiatives with at least one named region</div>
+      </div>
+      <div class="card metric">
+        <div class="label">Coverage Not Specified</div>
+        <div class="value">15</div>
+        <div class="hint">Shown separately through the coverage mode toggle</div>
+      </div>
+      <div class="card metric">
+        <div class="label">Current Mode</div>
+        <div class="value" id="modeLabel">Explicit</div>
+        <div class="hint" id="modeHint">Only regions explicitly listed for each initiative are counted</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="layout">
+    <section class="card panel">
+      <h3>Initiatives by Region</h3>
+      <div id="map"></div>
+      <div id="mapError" class="error" style="display:none;"></div>
+    </section>
+
+    <section class="side-stack">
+      <section class="card panel">
+        <h3>Region Detail</h3>
+        <div id="regionDetail" class="detail">
+          <h4>Select a region</h4>
+          <div class="count">—</div>
+          <div>Click any region on the map to see the initiative list for that region.</div>
+        </div>
+      </section>
+
+      <section class="card panel">
+        <h3>Regional Summary Table</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Region</th><th>Initiatives</th></tr>
+            </thead>
+            <tbody id="summaryTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </section>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+<script>
+const APP = {"regions": ["Addis Ababa", "Afar", "Amhara", "Benishangul-Gumuz", "Dire Dawa", "Gambela", "Harari", "Oromia", "Sidama", "Somali", "South West Ethiopia People", "Tigray", "South Ethiopia People", "Central Ethiopia"], "initiatives_total": 22, "initiatives_with_explicit_coverage": 7, "initiatives_without_coverage": 15, "unspecified_initiatives": ["Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"], "counts": {"explicit": {"Addis Ababa": 3, "Afar": 7, "Amhara": 7, "Benishangul-Gumuz": 5, "Dire Dawa": 6, "Gambela": 6, "Harari": 6, "Oromia": 6, "Sidama": 5, "Somali": 7, "South West Ethiopia People": 4, "Tigray": 5, "South Ethiopia People": 4, "Central Ethiopia": 6}, "inclusive": {"Addis Ababa": 18, "Afar": 22, "Amhara": 22, "Benishangul-Gumuz": 20, "Dire Dawa": 21, "Gambela": 21, "Harari": 21, "Oromia": 21, "Sidama": 20, "Somali": 22, "South West Ethiopia People": 19, "Tigray": 20, "South Ethiopia People": 19, "Central Ethiopia": 21}}, "names": {"explicit": {"Addis Ababa": ["CPSS Benchmarking and Refugee Inclusion Tool", "CRVS (Birth Registration)", "Ethiopia Learning Passport"], "Afar": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "CRVS (Birth Registration)", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity"], "Amhara": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "CRVS (Birth Registration)", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity"], "Benishangul-Gumuz": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "EMIS Enterprise", "GIGA School Connectivity"], "Dire Dawa": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity"], "Gambela": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity"], "Harari": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity"], "Oromia": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity"], "Sidama": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "EMIS Enterprise", "GIGA School Connectivity"], "Somali": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "CRVS (Birth Registration)", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity"], "South West Ethiopia People": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "GIGA School Connectivity"], "Tigray": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "Ethiopia Learning Passport", "GIGA School Connectivity"], "South Ethiopia People": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "GIGA School Connectivity"], "Central Ethiopia": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity"]}, "inclusive": {"Addis Ababa": ["CPSS Benchmarking and Refugee Inclusion Tool", "CRVS (Birth Registration)", "Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "Ethiopia Learning Passport", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"], "Afar": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "CRVS (Birth Registration)", "Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"], "Amhara": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "CRVS (Birth Registration)", "Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"], "Benishangul-Gumuz": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "EMIS Enterprise", "GIGA School Connectivity", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"], "Dire Dawa": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"], "Gambela": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"], "Harari": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"], "Oromia": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"], "Sidama": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "EMIS Enterprise", "GIGA School Connectivity", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"], "Somali": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "CRVS (Birth Registration)", "Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"], "South West Ethiopia People": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "GIGA School Connectivity", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"], "Tigray": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "Ethiopia Learning Passport", "GIGA School Connectivity", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"], "South Ethiopia People": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "GIGA School Connectivity", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"], "Central Ethiopia": ["CPSS Benchmarking and Refugee Inclusion Tool", "International Adoption System Digitization (FTR)", "CPIMS+/PRIMERO", "Complaint and Feedback Mechanism (CFM)", "Project Alpha", "MCF-M&E", "MCF-OSC MIS", "MCF-Seed funding", "CPD indicator framework", "EMIS Enterprise", "Ethiopia Learning Passport", "GIGA School Connectivity", "STEP M&E Dashboard", "CBHI/SHI Digitization", "RCCE and Community based disease monitoring and response", "eCHIS Digitization", "Supply Chain Stregthening", "Egg Powder Initiative", "Digital Social Registry", "Improved Sanitation with Sato Pans and RapidPro", "Groundwater Mapping (GWM)"]}}, "source_note": "Map counts are derived from the dashboard initiative data. Because 15 initiatives have 'N/A' geographic coverage, the map includes two viewing modes: 'Explicit regional coverage only' and 'Treat N/A as nationwide'."};
+const GEOJSON_URL = "https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/main/releaseData/gbOpen/ETH/ADM1/geoBoundaries-ETH-ADM1_simplified.geojson";
+
+let currentMode = "explicit";
+let selectedLayer = null;
+let geoLayer = null;
+
+function normalizeName(name) {
+  return String(name || "")
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/gambella/g, "gambela")
+    .replace(/people'?s/g, "people")
+    .replace(/region/g, "")
+    .replace(/\s+/g, " ")
+    .replace(/[^a-z0-9 ]/g, "")
+    .trim();
+}
+
+function getFeatureRegionName(feature) {
+  const p = feature.properties || {};
+  const candidates = [
+    p.admin1Name, p.shapeName, p.ADM1_EN, p.ADM1_PCODE, p.name, p.NAME_1, p.shapeName_1, p.shapeGroup
+  ].filter(Boolean);
+  for (const c of candidates) {
+    const norm = normalizeName(c);
+    const found = APP.regions.find(r => normalizeName(r) === norm);
+    if (found) return found;
+  }
+  // fallback: look for any property that matches
+  for (const key of Object.keys(p)) {
+    const val = p[key];
+    if (typeof val === "string") {
+      const found = APP.regions.find(r => normalizeName(r) === normalizeName(val));
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
+function getCounts() {
+  return APP.counts[currentMode];
+}
+
+function getNames() {
+  return APP.names[currentMode];
+}
+
+function getColor(d) {
+  if (d > 20) return "#08306b";
+  if (d > 15) return "#2171b5";
+  if (d > 10) return "#4292c6";
+  if (d > 5) return "#6baed6";
+  if (d > 0) return "#c6dbef";
+  return "#f1f5f9";
+}
+
+function styleFeature(feature) {
+  const region = getFeatureRegionName(feature);
+  const count = region ? (getCounts()[region] || 0) : 0;
+  return {
+    fillColor: getColor(count),
+    weight: 1.2,
+    opacity: 1,
+    color: "#ffffff",
+    dashArray: "0",
+    fillOpacity: 0.95
+  };
+}
+
+const map = L.map("map", {
+  zoomControl: true,
+  scrollWheelZoom: true
+}).setView([8.8, 39.6], 6);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+const info = L.control();
+info.onAdd = function() {
+  this._div = L.DomUtil.create("div", "leaflet-control info");
+  this.update();
+  return this._div;
+};
+info.update = function(region, count) {
+  this._div.innerHTML = region
+    ? `<strong>${region}</strong><br/>Initiatives: <strong>${count}</strong>`
+    : "Hover over a region";
+};
+info.addTo(map);
+
+const legend = L.control({ position: "bottomright" });
+legend.onAdd = function() {
+  const div = L.DomUtil.create("div", "legend");
+  const grades = [0, 1, 6, 11, 16, 21];
+  let labels = ["<strong>Initiative Count</strong>"];
+  for (let i = 0; i < grades.length; i++) {
+    const from = grades[i];
+    const to = grades[i + 1] ? grades[i + 1] - 1 : "+";
+    labels.push(
+      '<i style="background:' + getColor(from === 0 ? 0 : from) + '"></i> ' +
+      from + (to !== "+" ? "&ndash;" + to : "+")
+    );
+  }
+  div.innerHTML = labels.join("<br>");
+  return div;
+};
+legend.addTo(map);
+
+function updateModeMeta() {
+  const label = document.getElementById("modeLabel");
+  const hint = document.getElementById("modeHint");
+  if (currentMode === "explicit") {
+    label.textContent = "Explicit";
+    hint.textContent = "Only regions explicitly listed for each initiative are counted";
+  } else {
+    label.textContent = "N/A as Nationwide";
+    hint.textContent = "Initiatives with unspecified coverage are counted in every region";
+  }
+}
+
+function updateRegionDetail(region) {
+  const box = document.getElementById("regionDetail");
+  const count = getCounts()[region] || 0;
+  const names = (getNames()[region] || []).slice().sort((a, b) => a.localeCompare(b));
+  box.innerHTML = `
+    <h4>${region}</h4>
+    <div class="count">${count}</div>
+    <div><strong>Coverage mode:</strong> ${currentMode === "explicit" ? "Explicit regional coverage only" : "Treat N/A as nationwide"}</div>
+    <ul class="list">
+      ${names.length ? names.map(n => `<li>${n}</li>`).join("") : "<li>No initiatives counted for this region in the current mode.</li>"}
+    </ul>
+  `;
+}
+
+function updateSummaryTable() {
+  const tbody = document.getElementById("summaryTable");
+  const rows = APP.regions
+    .map(region => [region, getCounts()[region] || 0])
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  tbody.innerHTML = rows.map(([region, count]) => `<tr><td>${region}</td><td><strong>${count}</strong></td></tr>`).join("");
+}
+
+function resetHighlight(e) {
+  if (!selectedLayer || selectedLayer !== e.target) {
+    geoLayer.resetStyle(e.target);
+  }
+  info.update();
+}
+
+function highlightFeature(e) {
+  const layer = e.target;
+  const region = layer.feature.properties.__regionName;
+  const count = region ? (getCounts()[region] || 0) : 0;
+  layer.setStyle({
+    weight: 2.5,
+    color: "#1e293b",
+    fillOpacity: 1
+  });
+  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+    layer.bringToFront();
+  }
+  info.update(region, count);
+}
+
+function selectFeature(layer) {
+  if (selectedLayer && selectedLayer !== layer) {
+    geoLayer.resetStyle(selectedLayer);
+  }
+  selectedLayer = layer;
+  const region = layer.feature.properties.__regionName;
+  layer.setStyle({
+    weight: 2.8,
+    color: "#0f172a",
+    fillOpacity: 1
+  });
+  updateRegionDetail(region);
+}
+
+function onEachFeature(feature, layer) {
+  const region = getFeatureRegionName(feature);
+  feature.properties.__regionName = region;
+  layer.on({
+    mouseover: highlightFeature,
+    mouseout: resetHighlight,
+    click: function(e) {
+      selectFeature(layer);
+    }
+  });
+}
+
+function refreshLayerStyles() {
+  if (!geoLayer) return;
+  geoLayer.eachLayer(layer => {
+    geoLayer.resetStyle(layer);
+  });
+  if (selectedLayer) {
+    const region = selectedLayer.feature.properties.__regionName;
+    const match = [];
+    geoLayer.eachLayer(layer => {
+      if (layer.feature.properties.__regionName === region) match.push(layer);
+    });
+    if (match.length) {
+      selectedLayer = match[0];
+      selectFeature(selectedLayer);
+    }
+  }
+  updateSummaryTable();
+  updateModeMeta();
+}
+
+async function loadMap() {
+  try {
+    const res = await fetch(GEOJSON_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error("Could not load Ethiopia ADM1 GeoJSON boundary file.");
+
+    const text = await res.text();
+    if (text.trim().startsWith("version https://git-lfs.github.com/spec")) {
+      throw new Error("The boundary URL returned a Git LFS pointer instead of the actual GeoJSON file.");
+    }
+
+    const geojson = JSON.parse(text);
+    if (!geojson || geojson.type !== "FeatureCollection" || !Array.isArray(geojson.features)) {
+      throw new Error("The loaded boundary file is not a valid GeoJSON FeatureCollection.");
+    }
+
+    geoLayer = L.geoJson(geojson, {
+      style: styleFeature,
+      onEachFeature: onEachFeature
+    }).addTo(map);
+
+    try {
+      map.fitBounds(geoLayer.getBounds(), { padding: [10, 10] });
+    } catch (e) {}
+
+    updateSummaryTable();
+  } catch (err) {
+    const box = document.getElementById("mapError");
+    box.style.display = "block";
+    box.innerHTML = "<strong>Map loading issue:</strong> " + err.message + "<br/>This version uses the GitHub media URL for the Ethiopia ADM1 boundary file. If your network blocks media.githubusercontent.com, upload the GeoJSON file into the same GitHub repository and point GEOJSON_URL to that local file.";
+  }
+}
+
+document.querySelectorAll('input[name="mode"]').forEach(input => {
+  input.addEventListener("change", function() {
+    currentMode = this.value;
+    refreshLayerStyles();
+  });
+});
+
+updateModeMeta();
+updateSummaryTable();
+loadMap();
+</script>
+</body>
+</html>
